@@ -1,0 +1,3 @@
+cd ../dcrdocs
+mkdocs serve &
+
