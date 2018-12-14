@@ -1,6 +1,6 @@
 # Instructions for setting up a Decred development node
 
-This means cloning, from Github, the following components, building and running them:
+You can obtain from Github the following components, build and run them:
 
     atomicswap		
     dcrandroid		
@@ -29,6 +29,8 @@ This means cloning, from Github, the following components, building and running 
     dcrweb			
 
 These can all be found at [github.com/decred](https://github.com/decred).
+
+The only essential components are dcrd and dcrwallet.
 
 E.g. `git clone https://github.com/decred/dcrd`
 
