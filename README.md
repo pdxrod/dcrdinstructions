@@ -67,10 +67,14 @@ What you see are the files under dcrdocs/docs which end in ".md" (Markdown). See
 
 ## dcrd			
 
-This is the Decred daemon - the program which runs in the background, connects to other Decred daemons all over the
+This is the Decred daemon - the program which runs in the background, connects to other Decred daemons around the
 world, reads new transactions, and attempts to incorporate them into a new block in the Decred blockchain.
 
-In development, you will probably use the daemon in 'testnet' mode, where there is no risk of losing any real money.
+Decred consists of the files ending in '.go' in this folder and its subfolders.
+
+The Decred daemon's entry point is `func main` in `dcrd.go`.
+
+In development, you will want to use the daemon in 'testnet' mode, where there is no risk of losing any real money.
 
 `dcrd --testnet -u rpcuser -P rpcpass`
 
@@ -117,7 +121,7 @@ Once the wallet is running, you can find out how many Decred tokens are in it by
 
 You can send tokens to an address with
 
-`dcrctl --wallet --testnet --rpcuser=rpcuser --rpcpass=rpcpass sendtoaddress DcuVqH4jWBZR68H9HXUUNYWjVfdnEymVHot 10`
+`dcrctl --wallet --testnet --rpcuser=rpcuser --rpcpass=rpcpass sendtoaddress cuV4XWjH6UBH8HDR9Zq 10`
 
 The last two arguments are an address, and a number of tokens.
 
@@ -128,3 +132,17 @@ The last two arguments are an address, and a number of tokens.
 ## dcrdocker		
 
 ## dcrweb
+
+This is the code for the Decred website, `https://www.decred.org`
+
+This is dependent on Docker
+
+You need to install Docker, which you can get from `https://www.docker.com`, and start the `docker daemon`
+
+You need a program called `yarn`, which you can get from `https://yarnpkg.com`
+
+cd into the dcrweb folder and enter
+
+`yarn dev`
+
+Wait a few minutes, and you should be able to access the site at `http://localhost:8080`
