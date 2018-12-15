@@ -40,6 +40,10 @@ Most of the information here can also be found in the README.md files in each of
 
 All the instructions below assume a Unix-like environment. If you are using Windows, in order to follow these instructions, you need to obtain Cygwin from [http://cygwin.com/](http://cygwin.com/). Cygwin is a Unix-like shell, like the Windows Command Prompt, but with a more extensive set of commands.
 
+There are a number of scripts in this project (files ending in .sh). Before using them, you might want to read them to
+see if they do exactly what you want. For example, `startdrdata.sh` contains the flag `--pg`, which means "Use the
+Postgresql database". You need to create this database, and a user, and give it various permissions to use this flag.
+
 
 ## atomicswap		
 
@@ -76,12 +80,16 @@ Decred consists of the files ending in '.go' in this folder and its subfolders.
 
 The Decred daemon's entry point is `func main` in `dcrd.go`.
 
+`GO111MODULE=on go build`
+
 In development, you will want to use the daemon in 'testnet' mode, where there is no risk of losing any real money.
 
 `dcrd --testnet -u rpcuser -P rpcpass`
 
 'rpcuser' and 'rpcpass' can be replaced with a more secure username and password - these you will use to communicate
-with the daemon, for example, through dcrwallet.
+with the daemon, for example, through dcrwallet and dcrdata.
+
+You may have to wait a few minutes before connecting to dcrd with other programs, e.g. dcrdata and dcrdwallet.
 
 ## dcrseeder		
 
@@ -95,7 +103,7 @@ with the daemon, for example, through dcrwallet.
 
 Decred block explorer - see `https://explorer.dcrdata.org`
 
-You need to get Node and NPM from `https://nodejs.org`
+You need to get Node and NPM from `https://nodejs.org` and run
 
 You should also carefully read the README.md file in dcrdata, especially the section
 about Postgresql. You need Postgresql, and to locate the config file (e.g.
@@ -109,6 +117,8 @@ CREATE ROLE dcrdata;
 
 CREATE DATABASE dcrdata OWNER dcrdata;
 
+ALTER ROLE dcrdata WITH LOGIN;
+
 Then `\q` to exit psql, then
 
 `mkdir ~/.dcrdata`
@@ -117,9 +127,11 @@ Then `\q` to exit psql, then
 
 OR
 
+`mkdir ~/Library/Application\ Support/Dcrdata/` and
+
 `cp sample-dcrdata.conf ~/Library/Application\ Support/Dcrdata/dcrdata.conf` on Mac.
 
-It's very important that you edit the file `~/.dcrdata/dcrdata.conf` to the correct settings. For example,
+It's very important that you edit the new file `dcrdata.conf` to the correct settings. For example,
 it assumes which mode the Decred daemon is running in - you probably want 'testnet' (see dcrd section above).
 
 Create a data folder - e.g.
@@ -131,13 +143,13 @@ Mac: `~/Library/Application Support/Dcrdata/data`
 These may be soft links pointing to folders on an external 1+Tb disk.
 
 You also need to edit your dcrd.conf file which was created when you installed and ran the Decred daemon,
-so that settings
+so that
 
 `txindex=1` and
 
 `addrindex=1`
 
-are set, by deleting the semicolon which comments them out.
+are set, by deleting the semicolons which comment them out, and restarting dcrd.
 
 `GO111MODULE=on go build`
 
@@ -153,9 +165,7 @@ are set, by deleting the semicolon which comments them out.
 
 So you may have to enter
 
-`cp v3 dcrdata` then
-
-`./dcrdata --pg --testnet --dcrduser=rpcuser --dcrdpass=rpcpass` to start dcrdata
+`./v3 --pg --testnet --dcrduser=rpcuser --dcrdpass=rpcpass` to start dcrdata
 
 and navigate to http://localhost:7777
 
