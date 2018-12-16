@@ -94,12 +94,16 @@ The Decred daemon's entry point is `func main` in `dcrd.go`.
 
 In development, you will want to use the daemon in 'testnet' mode, where there is no risk of losing any real money.
 
-`dcrd --testnet -u rpcuser -P rpcpass`
+`./dcrd --testnet -u rpcuser -P rpcpass`
 
 'rpcuser' and 'rpcpass' can be replaced with a more secure username and password - these you will use to communicate
 with the daemon, for example, through dcrwallet and dcrdata.
 
 You may have to wait a few minutes before connecting to dcrd with other programs, e.g. dcrdata and dcrdwallet.
+
+`cd cmd/dcrctl`
+
+`GO111MODULE=on go build` to create 'dcrctl'
 
 ## dcrseeder		
 
@@ -231,7 +235,7 @@ Edit testnetfaucet.conf so it looks like
     ;withdrawalamount=2
     ;withdrawaltimelimit=30
 
----    
+--    
 
 `./testnetfaucet -h` for help
 
@@ -244,9 +248,9 @@ The output from dcrwallet should tell you it has connected.
 
 ## dcrwallet		
 
-The Decred 'wallet' is run with the following command
+`GO111MODULE=on go build`
 
-`dcrwallet --testnet -u rpcuser -P rpcpass`
+`./dcrwallet --testnet -u rpcuser -P rpcpass`
 
 (or whatever username and password you started dcrd with - see above)
 

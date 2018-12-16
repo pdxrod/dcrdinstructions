@@ -3,4 +3,5 @@ if [[ "" == "$2" ]] ; then
 	exit 1
 fi
 
-dcrctl --wallet --testnet getbalance --rpcuser=$1 --rpcpass=$2
+cd ../dcrd/cmd/dcrctl
+./dcrctl --wallet --testnet getbalance --rpcuser=$1 --rpcpass=$2

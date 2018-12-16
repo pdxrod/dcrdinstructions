@@ -5,4 +5,5 @@ if [[ "" == "$4" ]] ; then
 	exit 1
 fi
 
-dcrctl --wallet --testnet --rpcuser=$1 --rpcpass=$2 sendtoaddress $3 $4
+cd ../dcrd/cmd/dcrctl
+./dcrctl --wallet --testnet --rpcuser=$1 --rpcpass=$2 sendtoaddress $3 $4

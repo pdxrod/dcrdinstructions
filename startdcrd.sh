@@ -3,4 +3,5 @@ if [[ "" == "$2" ]] ; then
 	exit 1
 fi
 
-dcrd --testnet -u $1 -P $2
+cd ../dcrd
+./dcrd --testnet -u $1 -P $2

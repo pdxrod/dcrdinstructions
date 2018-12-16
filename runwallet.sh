@@ -3,4 +3,5 @@ if [[ "" == "$2" ]] ; then
 	exit 1
 fi
 
-dcrwallet --testnet -u $1 -P $2
+cd ../dcrwallet
+./dcrwallet --testnet -u $1 -P $2
