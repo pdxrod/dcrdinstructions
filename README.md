@@ -54,7 +54,9 @@ Postgresql database". You need to create this database, and a user, and give it 
 You need to get 'mkdocs'
 
 This is installed using the Python program 'pip', which is installed when you install Python
-pip install mkdocs
+
+`pip install mkdocs`
+
 It runs under Python version 2
 
 `cd dcrdocs`
@@ -63,13 +65,21 @@ It runs under Python version 2
 
 Point your browser at http://localhost:8000
 
-What you see are the files under dcrdocs/docs which end in ".md" (Markdown). See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet.
+What you see are the files under dcrdocs/docs which end in ".md" (Markdown), rendered into HTML.
+See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet.
 
 ## dcrwebapi		
 
 ## politeia
 
 ## base58			
+
+An API for encoding and decoding to and from the modified base58 encoding. It also provides an API to do Base58Check encoding, as described
+[here](https://en.bitcoin.it/wiki/Base58Check_encoding).
+
+`go get -u github.com/decred/base58`
+
+`GO111MODULE=on go build`
 
 ## dcrd			
 
@@ -99,14 +109,19 @@ You may have to wait a few minutes before connecting to dcrd with other programs
 
 ## bitcore			
 
+An interface to the Bitcoin network, and provides the core functionality needed to develop apps for bitcoin.
+
 ## dcrdata			
 
 Decred block explorer - see `https://explorer.dcrdata.org`
 
 You need to get Node and NPM from `https://nodejs.org` and run
 
-You should also carefully read the README.md file in dcrdata, especially the section
-about Postgresql. You need Postgresql, and to locate the config file (e.g.
+`npm install`
+
+You should also carefully read the README.md file in dcrdata.
+
+You need Postgresql, and to locate the config file (e.g.
   `/usr/local/var/postgres/postgresql.conf` - see below).
 
 You need to log in to Postgresql using the `psql` tool, then
@@ -165,9 +180,11 @@ are set, by deleting the semicolons which comment them out, and restarting dcrd.
 
 So you may have to enter
 
-`./v3 --pg --testnet --dcrduser=rpcuser --dcrdpass=rpcpass` to start dcrdata
+`mv v3 dcrdata`
 
-and navigate to http://localhost:7777
+before starting dcrdata.
+
+Then navigate to http://localhost:7777
 
 ## dcrstakepool		
 
@@ -182,6 +199,46 @@ and navigate to http://localhost:7777
 ## hardforkdemo		
 
 ## testnetfaucet
+
+A web app that sends coins to the `testnet` Decred network (not real money). It
+needs dcrwallet to be running to do this. See below.
+
+`go install`
+
+`GO111MODULE=on go build`
+
+`cp sample-testnetfaucet.conf ~/.testnetfaucet/testnetfaucet.conf` OR
+
+`cp sample-testnetfaucet.conf ~/Library/Application\ Support/Testnetfaucet/testnetfaucet.conf` on Mac
+
+`cp ~/.dcrwallet/rpc.cert .` OR
+
+`cp  ~/Library/Application\ Support/Dcrwallet/rpc.cert .` on Mac
+
+Edit testnetfaucet.conf so it looks like
+
+    ; overridetoken bypasses the rate limiter.  Required.
+    overridetoken=developers!developers!developers!
+
+    ; wallet rpc connection stuff.  Required.
+    wallethost=127.0.0.1
+    walletuser=rpcuser
+    walletpassword=rpcpass
+    ; [or whatever username or password you chose in dcrwallet - see below]
+
+    ;walletaddress=TsfDLrRkk9ciUuwfp2b8PawwnukYD7yAjGd
+    walletcert=rpc.cert
+    ;withdrawalamount=2
+    ;withdrawaltimelimit=30
+
+---    
+
+`./testnetfaucet -h` for help
+
+`././testnetfaucet --testnet --withdrawalamount 2`
+
+to run it - while dcrwallet is running.
+The output from dcrwallet should tell you it has connected.
 
 ## dcps			
 
