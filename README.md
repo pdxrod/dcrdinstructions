@@ -34,16 +34,14 @@ The only essential components are dcrd and dcrwallet.
 
 E.g. `git clone https://github.com/decred/dcrd`
 
-If you don't have the Git version control system, you need to download it from [https://git-scm.com/](https://git-scm.com/) and install it on your system.
+If you don't have the Git version control system, you need to download it from [https://git-scm.com](https://git-scm.com) and install it on your system.
 
 Most of the information here can also be found in the README.md files in each of the folders listed above (except in dcps, the file is called README.mediawiki).
 
 All the instructions below assume a Unix-like environment. If you are using Windows, in order to follow these instructions, you need to obtain Cygwin from [http://cygwin.com/](http://cygwin.com/). Cygwin is a Unix-like shell, like the Windows Command Prompt, but with a more extensive set of commands.
 
 There are a number of scripts in this project (files ending in .sh). Before using them, you might want to read them to
-see if they do exactly what you want. For example, `startdrdata.sh` contains the flag `--pg`, which means "Use the
-Postgresql database". You need to create this database, and a user, and give it various permissions to use this flag.
-
+see if they do exactly what you want.
 
 ## atomicswap		
 
@@ -248,6 +246,20 @@ The output from dcrwallet should tell you it has connected.
 
 ## dcrwallet		
 
+`cp sample-dcrwallet.conf ~/.dcrwallet/dcrwallet.conf` OR
+
+`cp sample-dcrwallet.conf ~/Library/Application\ Support/Dcrwallet/dcrwallet.conf` on Mac
+
+Edit this new conf file to give it the correct settings
+
+It should contain
+
+    testnet=1
+    dcrdusername=rpcuser
+    dcrdpassword=rpcpass
+
+or whatever RPC username and password you gave to dcrd.
+
 `GO111MODULE=on go build`
 
 `./dcrwallet --testnet -u rpcuser -P rpcpass`
@@ -256,11 +268,13 @@ The output from dcrwallet should tell you it has connected.
 
 Once the wallet is running, you can find out how many Decred tokens are in it by running
 
-`dcrctl --wallet --testnet getbalance --rpcuser=rpcuser --rpcpass=rpcpass`
+`cd ../dcrd/cmd/dcrctl`
+
+`./dcrctl --wallet --testnet getbalance --rpcuser=rpcuser --rpcpass=rpcpass`
 
 You can send tokens to an address with
 
-`dcrctl --wallet --testnet --rpcuser=rpcuser --rpcpass=rpcpass sendtoaddress cuV4XWjH6UBH8HDR9Zq 10`
+`./dcrctl --wallet --testnet --rpcuser=rpcuser --rpcpass=rpcpass sendtoaddress cuV4XWjH6UBH8HDR9Zq 10`
 
 The last two arguments are an address, and a number of tokens.
 
