@@ -12,7 +12,6 @@ You can obtain from Github the following components, build and run them:
     dcrseeder		
     decrediton		
     politeiagui
-    bitcore			
     dcrdata			
     dcrstakepool		
     gominer			
@@ -108,10 +107,6 @@ You may have to wait a few minutes before connecting to dcrd with other programs
 ## decrediton		
 
 ## politeiagui
-
-## bitcore			
-
-An interface to the Bitcoin network, and provides the core functionality needed to develop apps for bitcoin.
 
 ## dcrdata			
 
