@@ -7,11 +7,11 @@ You can obtain from Github the following components, build and run them:
     dcrdocs			
     dcrwebapi		
     politeia
+    politeiagui
     base58			
     dcrd			
     dcrseeder		
     decrediton		
-    politeiagui
     dcrdata			
     dcrstakepool		
     gominer			
@@ -67,7 +67,17 @@ See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet.
 
 ## dcrwebapi		
 
-## politeia
+## politeia (πολιτεία)
+
+See politeia/README.md
+
+## politeiagui
+
+`npm install`
+
+`yarn && yarn start`
+
+Go to 'https://localhost:3000/` in a browser
 
 ## base58			
 
@@ -105,8 +115,6 @@ You may have to wait a few minutes before connecting to dcrd with other programs
 ## dcrseeder		
 
 ## decrediton		
-
-## politeiagui
 
 ## dcrdata			
 
@@ -182,6 +190,8 @@ So you may have to enter
 before starting dcrdata.
 
 Then navigate to http://localhost:7777
+
+Documentation for dcrdata's experimental REST API can be found in dcrdata/api/Insight_API_documentation.md
 
 ## dcrstakepool		
 
