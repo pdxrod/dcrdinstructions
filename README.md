@@ -77,7 +77,7 @@ See politeia/README.md
 
 `yarn && yarn start`
 
-Go to 'https://localhost:3000/` in a browser
+Go to `https://localhost:3000/` in a browser
 
 ## base58			
 
