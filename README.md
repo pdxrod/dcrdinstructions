@@ -141,7 +141,7 @@ ALTER ROLE dcrdata WITH LOGIN;
 
 Then `\q` to exit psql, then
 
-`mkdir ~/.dcrdata`
+`mkdir ~/.dcrdata` and
 
 `cp sample-dcrdata.conf ~/.dcrdata/dcrdata.conf`
 
@@ -151,7 +151,7 @@ OR
 
 `cp sample-dcrdata.conf ~/Library/Application\ Support/Dcrdata/dcrdata.conf` on Mac.
 
-It's very important that you edit the new file `dcrdata.conf` to the correct settings. For example,
+You should edit the new file `dcrdata.conf` to the correct settings. For example,
 it assumes which mode the Decred daemon is running in - you probably want 'testnet' (see dcrd section above).
 
 Create a data folder - e.g.
@@ -162,7 +162,7 @@ Mac: `~/Library/Application Support/Dcrdata/data`
 
 These may be soft links pointing to folders on an external 1+Tb disk.
 
-You also need to edit your dcrd.conf file which was created when you installed and ran the Decred daemon,
+You may also need to edit your dcrd.conf file which was created when you installed and ran the Decred daemon,
 so that
 
 `txindex=1` and
